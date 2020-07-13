@@ -41,7 +41,7 @@ class MoviesAdapter(private val context: Context, private val moviesList: List<R
                 val I = Intent(context, ResultActivity::class.java)
                 I.putExtra("overview", movie.overview) //string
                 I.putExtra("title", movie.title) //string
-                I.putExtra("release date ", movie.release_date) //string
+                I.putExtra("release date", movie.release_date) //string
                 I.putExtra("image", movie.poster_path)//string
                 context.startActivity(I)
             }
