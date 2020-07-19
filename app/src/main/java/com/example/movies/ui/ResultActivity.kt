@@ -1,10 +1,13 @@
-package com.example.movies
+package com.example.movies.ui
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movies.databinding.ActivityResultBinding
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_result.*
+
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding

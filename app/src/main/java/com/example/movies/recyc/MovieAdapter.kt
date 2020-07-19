@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movies.MainActivity
 import com.example.movies.R
-import com.example.movies.ResultActivity
+import com.example.movies.ui.ResultActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_movie.view.*
 
