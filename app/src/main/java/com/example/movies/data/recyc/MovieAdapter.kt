@@ -1,4 +1,4 @@
-package com.example.movies.recyc
+package com.example.movies.data.recyc
 
 import android.content.Intent
 import android.view.LayoutInflater

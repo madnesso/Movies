@@ -6,11 +6,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.movies.databinding.ActivityMainBinding
-import com.example.movies.network.ApiResponse
-import com.example.movies.network.ApiService
-import com.example.movies.network.RetrofitClient
-import com.example.movies.recyc.MoviesAdapter
-import com.example.movies.recyc.Results
+import com.example.movies.data.network.ApiResponse
+import com.example.movies.data.network.ApiService
+import com.example.movies.data.network.RetrofitClient
+import com.example.movies.data.recyc.MoviesAdapter
+import com.example.movies.data.recyc.Results
 import kotlinx.android.synthetic.main.activity_main.*
 import  retrofit2.Callback
 import retrofit2.Call

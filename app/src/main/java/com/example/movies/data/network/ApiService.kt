@@ -1,4 +1,4 @@
-package com.example.movies.network
+package com.example.movies.data.network
 
 import retrofit2.Call
 import retrofit2.http.*
@@ -14,5 +14,5 @@ interface ApiService {
     fun getTopMovies(
         @Query("api_key") apiKey: String
     ): Call<ApiResponse>
-    
+
 }

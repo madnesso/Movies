@@ -1,4 +1,4 @@
-package com.example.movies.recyc
+package com.example.movies.data.recyc
 
 data class Results(
     val poster_path: String?,

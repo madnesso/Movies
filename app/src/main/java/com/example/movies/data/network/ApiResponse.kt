@@ -1,6 +1,6 @@
-package com.example.movies.network
+package com.example.movies.data.network
 
-import com.example.movies.recyc.Results
+import com.example.movies.data.recyc.Results
 
 data class ApiResponse(
     val page: Int,
