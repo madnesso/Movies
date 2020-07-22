@@ -2,19 +2,9 @@ package com.example.movies.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.example.movies.databinding.ActivityMainBinding
-import com.example.movies.data.db.entity.ApiResponse
 import com.example.movies.data.network.ApiService
-import com.example.movies.data.network.RetrofitClient
-import com.example.movies.data.recyc.MoviesAdapter
-import com.example.movies.data.db.entity.MoviesEntry
-import kotlinx.android.synthetic.main.activity_main.*
-import  retrofit2.Callback
-import retrofit2.Call
-import retrofit2.Response
 
 private val tag: String = MainActivity::class.java.simpleName
 private lateinit var binding: ActivityMainBinding
@@ -27,60 +17,60 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        getPopMovies()
+        //getPopMovies()
         binding.popular.setOnClickListener(View.OnClickListener {
             binding.toptext.text = "Popular"
-            getTopRatedMovies()
+            //getTopRatedMovies()
         })
         binding.toprated.setOnClickListener(View.OnClickListener {
             binding.toptext.text = "Top rated"
-            getPopMovies()
+            //getPopMovies()
         })
     }
 
-    private fun getTopRatedMovies() {
-        apiService = RetrofitClient.getClient().create(ApiService::class.java)
+//    private fun getTopRatedMovies() {
+//        apiService = RetrofitClient.getClient().create(ApiService::class.java)
+//
+//        apiService.getTopMovies(apikey).enqueue(object : Callback<ApiResponse> {
+//
+//            override fun onResponse(
+//                call: Call<ApiResponse>, response: Response<ApiResponse>
+//            ) {
+//
+//                if (response.isSuccessful) {
+//                    val moviesList: List<MoviesEntry> = response.body()?.results ?: listOf()
+//                    binding.moviesrecycler.adapter = MoviesAdapter(applicationContext, moviesList)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+//                Log.e(tag, t.message.toString())
+//            }
+//
+//        })
+//    }
 
-        apiService.getTopMovies(apikey).enqueue(object : Callback<ApiResponse> {
-
-            override fun onResponse(
-                call: Call<ApiResponse>, response: Response<ApiResponse>
-            ) {
-
-                if (response.isSuccessful) {
-                    val moviesList: List<MoviesEntry> = response.body()?.results ?: listOf()
-                    binding.moviesrecycler.adapter = MoviesAdapter(applicationContext, moviesList)
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Log.e(tag, t.message.toString())
-            }
-
-        })
-    }
-
-    private fun getPopMovies() {
-        apiService = RetrofitClient.getClient().create(ApiService::class.java)
-
-        apiService.getPopMovies(apikey).enqueue(object : Callback<ApiResponse> {
-
-            override fun onResponse(
-                call: Call<ApiResponse>, response: Response<ApiResponse>
-            ) {
-
-                if (response.isSuccessful) {
-                    val moviesList: List<MoviesEntry> = response.body()?.results ?: listOf()
-                    moviesrecycler.adapter = MoviesAdapter(applicationContext, moviesList)
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Log.e(tag, t.message.toString())
-                Toast.makeText(applicationContext, "something is wrong", Toast.LENGTH_SHORT).show()
-            }
-
-        })
-
-    }
+//    private fun getPopMovies() {
+//        apiService = RetrofitClient.getClient().create(ApiService::class.java)
+//
+//        apiService.getPopMovies(apikey).enqueue(object : Callback<ApiResponse> {
+//
+//            override fun onResponse(
+//                call: Call<ApiResponse>, response: Response<ApiResponse>
+//            ) {
+//
+//                if (response.isSuccessful) {
+//                    val moviesList: List<MoviesEntry> = response.body()?.results ?: listOf()
+//                    moviesrecycler.adapter = MoviesAdapter(applicationContext, moviesList)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+//                Log.e(tag, t.message.toString())
+//                Toast.makeText(applicationContext, "something is wrong", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        })
+//
+//    }
 }
