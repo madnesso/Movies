@@ -50,11 +50,11 @@ class MoviesRepoImpl(
     }
 
     private suspend fun fetchTopMovies() {
-        movieNetworkDataSource.fetchTopMovies()
+        movieNetworkDataSource.fetchMovies("popularity.desc")
     }
 
     private suspend fun fetchPopMovies() {
-        movieNetworkDataSource.fetchPopMovies()
+        movieNetworkDataSource.fetchMovies("vote_average.desc")
     }
 
     private fun isFetchNeeded(lastFetchTime: ZonedDateTime): Boolean {

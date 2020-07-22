@@ -13,14 +13,9 @@ const val API_KEY: String = "25193f454c3e24f2891f790aed91f518"
 
 interface ApiService {
 
-    @GET("movie/popular")
-    fun getPopMovies(
-        @Query("api_key") apiKey: String = "25193f454c3e24f2891f790aed91f518"
-    ): Call<ApiResponse>
-
-    @GET("movie/top_rated")
-    fun getTopMovies(
-        @Query("api_key") apiKey: String = "25193f454c3e24f2891f790aed91f518"
+    @GET("discover/movie")
+    fun getMovies(
+        @Query("sort_by") sort: String
     ): Call<ApiResponse>
 
     companion object {
@@ -32,7 +27,7 @@ interface ApiService {
                 val url = chain.request()
                     .url()
                     .newBuilder()
-                    .addQueryParameter("key", API_KEY)
+                    .addQueryParameter("api_key", API_KEY)
                     .build()
                 val request = chain.request()
                     .newBuilder()
@@ -49,7 +44,7 @@ interface ApiService {
 
             return Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl("https://api.apixu.com/v1/")
+                .baseUrl("https://api.themoviedb.org/3/")
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
