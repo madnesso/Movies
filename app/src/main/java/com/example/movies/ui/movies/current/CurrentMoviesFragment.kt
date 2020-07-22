@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.movies.R
+import com.example.movies.data.network.ApiService
 
 class CurrentMoviesFragment : Fragment() {
 

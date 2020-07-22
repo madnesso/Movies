@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movies.R
+import com.example.movies.data.db.entity.MoviesEntry
 import com.example.movies.ui.ResultActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_movie.view.*
 
-class MoviesAdapter(private val context: Context, private val moviesList: List<Results>) :
+class MoviesAdapter(private val context: Context, private val moviesList: List<MoviesEntry>) :
     RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -33,7 +34,7 @@ class MoviesAdapter(private val context: Context, private val moviesList: List<R
         private val image = itemView.item_move_img
         private val title = itemView.item_move_name
 
-        fun bindMovieData(movie: Results) {
+        fun bindMovieData(movie: MoviesEntry) {
             Picasso.get().load("https://image.tmdb.org/t/p/w500/${movie.poster_path}").into(image)
             title.text = movie.title
             image.setOnClickListener {

@@ -6,11 +6,11 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.movies.databinding.ActivityMainBinding
-import com.example.movies.data.network.ApiResponse
+import com.example.movies.data.db.entity.ApiResponse
 import com.example.movies.data.network.ApiService
 import com.example.movies.data.network.RetrofitClient
 import com.example.movies.data.recyc.MoviesAdapter
-import com.example.movies.data.recyc.Results
+import com.example.movies.data.db.entity.MoviesEntry
 import kotlinx.android.synthetic.main.activity_main.*
 import  retrofit2.Callback
 import retrofit2.Call
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             ) {
 
                 if (response.isSuccessful) {
-                    val moviesList: List<Results> = response.body()?.results ?: listOf()
+                    val moviesList: List<MoviesEntry> = response.body()?.results ?: listOf()
                     binding.moviesrecycler.adapter = MoviesAdapter(applicationContext, moviesList)
                 }
             }
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             ) {
 
                 if (response.isSuccessful) {
-                    val moviesList: List<Results> = response.body()?.results ?: listOf()
+                    val moviesList: List<MoviesEntry> = response.body()?.results ?: listOf()
                     moviesrecycler.adapter = MoviesAdapter(applicationContext, moviesList)
                 }
             }
