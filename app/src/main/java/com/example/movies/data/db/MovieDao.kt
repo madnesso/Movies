@@ -18,4 +18,7 @@ interface MovieDao {
 
     @Query(value = "select * from  Movies")
     fun getPopMovies(): LiveData<CleanerMovie>
+
+    @Query(value = "delete from Movies")
+    fun deleteAllEntries()
 }

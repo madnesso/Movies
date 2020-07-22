@@ -15,10 +15,10 @@ abstract class MovieDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var instace: MovieDatabase? = null
+        private var instance: MovieDatabase? = null
         private val LOCK = Any()
-        operator fun invoke(context: Context) = instace ?: synchronized(LOCK) {
-            instace ?: buildDatabase(context).also { instace = it }
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
+            instance ?: buildDatabase(context).also { instance = it }
         }
 
         private fun buildDatabase(context: Context) =
