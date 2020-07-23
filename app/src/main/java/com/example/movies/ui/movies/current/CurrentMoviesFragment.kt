@@ -45,9 +45,16 @@ class CurrentMoviesFragment : ScopedFragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(CurrentMoviesViewModel::class.java)
         bindUI()
+        popular.setOnClickListener(View.OnClickListener {
+            toptext.text = "Popular"
+        })
+        toprated.setOnClickListener(View.OnClickListener {
+            toptext.text = "Top Rated"
+        })
     }
 
     private fun bindUI() = launch(Dispatchers.Main) {
