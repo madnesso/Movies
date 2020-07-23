@@ -3,7 +3,7 @@ package com.example.movies.data.repository
 import androidx.lifecycle.LiveData
 import com.example.movies.data.db.MovieDao
 import com.example.movies.data.db.entity.ApiResponse
-import com.example.movies.data.db.unitlocalised.CleanerMovie
+import com.example.movies.data.db.unitlocalised.CleanerMovieEntry
 import com.example.movies.data.network.MovieNetworkDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -16,25 +16,33 @@ class MoviesRepoImpl(
     private val movieNetworkDataSource: MovieNetworkDataSource
 ) : MoviesRepo {
     init {
-        movieNetworkDataSource.downloadedMovies.observeForever {
-            presistFetchedMovie(it)
+        movieNetworkDataSource.apply {
+            movieNetworkDataSource.downloadedMovies.observeForever {
+                persistFetchedMovie(it)
+            }
         }
     }
 
-    override suspend fun getTopMovies(): LiveData<out CleanerMovie> {
+    override suspend fun getTopMovies(): LiveData<out List<CleanerMovieEntry>> {
         return withContext(Dispatchers.IO) {
+            initTopMovies()
             return@withContext movieDao.getTopMovies()
         }
     }
 
-    override suspend fun getPopMovies(): LiveData<out CleanerMovie> {
+    override suspend fun getPopMovies(): LiveData<out List<CleanerMovieEntry>> {
         return withContext(Dispatchers.IO) {
+            initPopMovies()
             return@withContext movieDao.getPopMovies()
         }
     }
 
-    private fun presistFetchedMovie(fetchedMovie: ApiResponse) {
+    private fun persistFetchedMovie(fetchedMovie: ApiResponse) {
+        fun deleteOldData() {
+            movieDao.deleteAllEntries()
+        }
         GlobalScope.launch(Dispatchers.IO) {
+            deleteOldData()
             movieDao.upsert(fetchedMovie.results)
         }
     }

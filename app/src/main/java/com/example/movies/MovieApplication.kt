@@ -5,11 +5,10 @@ import android.content.Context
 import android.preference.PreferenceManager
 import androidx.room.Room
 import com.example.movies.data.db.MovieDatabase
-import com.example.movies.data.network.ApiService
-import com.example.movies.data.network.MovieNetworkDataSource
-import com.example.movies.data.network.MovieNetworkDataSourceImpl
+import com.example.movies.data.network.*
 import com.example.movies.data.repository.MoviesRepo
 import com.example.movies.data.repository.MoviesRepoImpl
+import com.example.movies.ui.movies.current.MovieFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -22,10 +21,17 @@ class MovieApplication : Application(), KodeinAware {
         import(androidXModule(this@MovieApplication))
         bind() from singleton { MovieDatabase(instance()) }
         bind() from singleton { instance<MovieDatabase>().movieDao() }
+        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
+        bind() from singleton { ApiService(instance()) }
+        bind() from provider { MovieFactory(instance()) }
         bind<MovieNetworkDataSource>() with singleton {
             MovieNetworkDataSourceImpl(instance())
         }
         bind<MoviesRepo>() with singleton { MoviesRepoImpl(instance(), instance()) }
+        bind() from factory { movieRepo: MoviesRepo ->
+            MovieFactory(instance())
+        }
+
 
     }
 

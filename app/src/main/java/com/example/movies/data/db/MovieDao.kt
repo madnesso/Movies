@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.movies.data.db.entity.MoviesEntry
-import com.example.movies.data.db.unitlocalised.CleanerMovie
+import com.example.movies.data.db.unitlocalised.CleanerMovieEntry
 
 @Dao
 interface MovieDao {
@@ -14,10 +14,10 @@ interface MovieDao {
     fun upsert(moviesEntry: List<MoviesEntry>)
 
     @Query(value = "select * from  Movies")
-    fun getTopMovies(): LiveData<CleanerMovie>
+    fun getTopMovies(): LiveData<List<CleanerMovieEntry>>
 
     @Query(value = "select * from  Movies")
-    fun getPopMovies(): LiveData<CleanerMovie>
+    fun getPopMovies(): LiveData<List<CleanerMovieEntry>>
 
     @Query(value = "delete from Movies")
     fun deleteAllEntries()

@@ -3,7 +3,9 @@ package com.example.movies.data.db.unitlocalised
 import android.icu.text.CaseMap
 import androidx.room.ColumnInfo
 
-data class CleanerMovie(
+data class CleanerMovieEntry(
+    @ColumnInfo(name = "id")
+    val id: Int,
     @ColumnInfo(name = "poster_path")
     val posterPath: String?,
     @ColumnInfo(name = "overview")

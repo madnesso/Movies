@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/currentMoviesFragment">
+
+    <fragment
+        android:id="@+id/currentMoviesFragment"
+        android:name="com.example.movies.ui.movies.current.CurrentMoviesFragment"
+        android:label="current_movies_fragment"
+        tools:layout="@layout/current_movies_fragment">
+        <action
+            android:id="@+id/action_currentMoviesFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.movies.ui.movies.details.ResultFragment"
+        android:label="result_fragment"
+        tools:layout="@layout/result_fragment">
+        <argument
+            android:name="Title"
+            app:argType="string" />
+        <argument
+            android:name="Overview"
+            app:argType="string" />
+        <argument
+            android:name="Date"
+            app:argType="string" />
+        <argument
+            android:name="ImagePath"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>
